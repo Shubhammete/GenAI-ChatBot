@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Input Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        
+            @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&family=Roboto:wght@500&family=Rubik&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&family=Quicksand&family=Roboto:wght@500&family=Rubik&display=swap');
+        
+        body{
+            color: black;
+    
+            background-color: rgba(21,27,30,.991);
+            font-family: 'Josefin Sans', sans-serif;
+            background-image: url('{{ url_for("static", filename="arrogant.jpeg") }}');
+            background-size: cover;
+            background-size: 100% 625px;
+            background-repeat: no-repeat;
+            
+              
+                
+              
+}
+
+        
+        /* style for the input form */
+        form {
+            display: flex;
+            width: 80%;
+            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px;
+            background-color:rgba(21,27,30,.991);
+            border-radius: 10px;
+        
+            
+
+
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 20px;
+            
+            margin-bottom: 20px;
+            background-color: white;
+            height: 16px;
+        }
+
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        /* style for the chatbot reply */
+        #output {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .btn-submit1 {
+            background-color: #008CBA;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+
+        /* style for the chatbot name */
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* style for the chatbot reply box */
+        button.btn-submit1 {
+            display: flex;
+            width: 100%;
+            padding: 120px 544px;
+            background-color: rgba(21, 27, 30, .15);
+            color: black;
+        }
+
+        #output {
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            width: 80%;
+            margin-bottom:120px;
+         
+        }
+
+        .para {
+            display: block;
+            margin-bottom: 10px;
+            border:1px solid green;
+            
+
+        }
+        .paraa {
+            display: block;
+            margin-bottom: 10px;
+            border:1px solid green;
+            
+
+        }
+        .para:nth-child(odd) {
+            display: inline-block;
+            width: fit-content;
+            margin-bottom: 10px;
+            border-radius: 36px;
+            position: relative;
+            left: 65%;
+            background-color: none;
+            /* width: auto; */
+            line-height: 21px;
+            border: none;
+            padding: 19px 20px;
+            color: rgba(21,27,30,.991);
+            position: relative;
+            right: -1%;
+            padding: 19px 20px;
+            margin: 15px 10px;
+            line-height: 21px;
+            word-wrap: break-word;
+            max-width: 40%;
+            background-color: #e7e6ec;
+            color: #151b1e;
+            border: none;
+            border-radius: 36px;
+        }
+
+.para:nth-child(even){
+            display: inline-block;
+            width: fit-content;
+            margin-bottom: 10px;
+             border: 1px solid red; 
+            position: relative;
+            right: -1%;
+            padding: 19px 20px;
+            margin: 15px 10px; 
+            line-height: 21px;
+            word-wrap: break-word;
+            max-width: 40%;
+            background-color: #037FFA;
+            color: white;
+            border:none;
+            border-radius: 36px;
+        }
+        
+        .inputPlace {
+            position: relative;
+            top: 500px;
+
+        }
+
+        .Input {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: fixed;
+            bottom: 10px;
+            background-color: rgba(21,27,30,.991);
+        }
+
+        #submitKr {
+            height: 46px;
+    position: relative;
+    left: 5px;
+    top: -4px;
+
+        }
+
+        .inputsubmit {
+            display: flex;
+            width: 100%;
+        }
+        #inputoutput{
+            height: 600px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        #name{
+            display: flex;
+    justify-content: center;
+    font-size: 41px;
+    margin-bottom: 28px;
+        }
+
+    #arrogant{
+        background-size: cover;
+    }    
+    #sound{
+        display: flex;
+    justify-content: center;
+    }
+   
+    </style>
+
+
+
+
+</head>
+
+<body onload="scrollToBottom()">
+    
+    
+    <div id="inputoutput">
+
+        
+
+
+     
+
+       
+        <div id="output">
+            {% for item in message %}
+
+
+                <p class="para">{{ item }}</p>
+                
+            
+
+            
+            {% endfor %}
+        </div>
+
+
+        <div class="Input">
+            <form action="/chat" method="post">
+
+                <label for="input"></label>
+                <div class="inputsubmit">
+                    
+                    <input type="text" id="input" name="input" placeholder="Your fingers should feel privileged to type here...">
+                    <br>
+                    <button type="submit" id="submitKr"><i class="fa-solid fa-paper-plane"></i></button>
+                   
+                    
+            </form>
+        </div>
+        
+        <div id="sound"><audio src="{{ url_for('static', filename='output.mp3') }}?v={{ cache_bust }}" controls></audio></div>
+    </div>
+
+
+
+
+</body>
+
+<script>
+    submitButton = document.getElementById("submitKr");
+    inputField = document.getElementById("input");
+    const loadingImage = document.createElement("loadKr");
+    
+   
+    
+
+    function scrollToBottom() {
+        var container = document.getElementById("inputoutput");
+        container.scrollTop = container.scrollHeight;
+        
+       
+      }
+      
+      submitButton.addEventListener("click", () => {
+         
+        setTimeout(() => {
+            submitButton.disabled=true;
+            
+          }, 10);
+     
+ 
+
+  // Your form submission logic here
+
+  // Once the form submission is complete, show the button text and hide the loading image
+  //submitButton.innerHTML = "Submit";
+  //loadingImage.style.display = "none";
+       
+        submitButton.innerHTML = "Wait...";
+        //loadingMessage.style.display = "block";
+
+  // Your form submission logic here
+
+  // Once the form submission is complete, hide the loading message
+  
+ 
+        const inputValue = inputField.value;
+       
+        
+        
+        
+       
+        
+        scrollToBottom();
+       
+      });
+     
+     
+      
+      
+      
+      
+      
+
+    
+    
+
+
+
+
+    
+   
+
+
+
+
+
+</script>
+
+</html>
